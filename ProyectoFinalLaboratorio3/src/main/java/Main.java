@@ -40,11 +40,11 @@ public class Main {
 //        carrito.listarCarrito();
 //        System.out.println(carrito.toString());
 //
-//        Factura factura=new Factura(cliente,carrito);
+         Factura factura=new Factura(cliente,carrito);
 //        System.out.println(factura);
-//        factura.enviarFactura();
-//        Reserva reserva=new Reserva(cliente,buzo);
-//        reserva.avisarCliente();
+//         factura.enviarFactura();
+         Reserva reserva=new Reserva(cliente,buzo);
+//         reserva.avisarCliente();
 //
 //        System.out.println(carrito.getMonto());
 
