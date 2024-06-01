@@ -1,12 +1,12 @@
 import personas.Administrador;
 import personas.Cliente;
-import prendas.Buzo;
-import prendas.Media;
-import prendas.Pantalon;
-import prendas.Remera;
+import prendas.*;
 import prendas.enumsPrendas.Color;
 import prendas.enumsPrendas.Genero;
 import prendas.enumsPrendas.Talle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,10 +22,10 @@ public class Main {
         Cliente cliente=new Cliente("Nombre","Apellido","DNI","nacho2012gomez@gmail.com","Usuario","Contrasenia","Pais","Provincia","Ciudad","Direccion",7600);
         Administrador administrador=new Administrador("Nombre","Apellido","DNI","email","Usuario","Contrasenia");
 
-        Buzo buzo=new Buzo(Talle.XS, Color.GRIS, Genero.FEMENINO,234.54,4);
-        Remera remera =new Remera(Talle.XS, Color.GRIS, Genero.FEMENINO,234.54,4);
-        Pantalon pantalon =new Pantalon(Talle.XS, Color.GRIS, Genero.FEMENINO,234.54,4);
-        Media media =new Media(Talle.XS, Color.GRIS, Genero.FEMENINO,234.54,4);
+        Buzo buzo=new Buzo(Talle.XS, Color.AZUL, Genero.FEMENINO,234.54,4);
+        Remera remera =new Remera(Talle.XS, Color.AZUL, Genero.FEMENINO,234.54,4);
+        Pantalon pantalon =new Pantalon(Talle.XS, Color.ROSA, Genero.MASCULINO,234.54,4);
+        Media media =new Media(Talle.XL, Color.AZUL, Genero.FEMENINO,234.54,4);
         Carrito carrito= new Carrito(cliente);
 
         carrito.agregarPrenda(buzo);
@@ -45,8 +45,20 @@ public class Main {
 //         factura.enviarFactura();
          Reserva reserva=new Reserva(cliente,buzo);
 //         reserva.avisarCliente();
+        GestorPrendas gestor=new GestorPrendas();
+        gestor.agregarPrenda(buzo);
+        gestor.agregarPrenda(remera);
+        gestor.agregarPrenda(pantalon);
+        gestor.agregarPrenda(media);
+
+        List<Prenda> list= new ArrayList<>();
+        list=gestor.filtrarRemeras();
+        System.out.println(list);
+
 //
 //        System.out.println(carrito.getMonto());
+
+
 
     }
 
