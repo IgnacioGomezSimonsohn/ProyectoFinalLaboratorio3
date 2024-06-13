@@ -21,6 +21,10 @@ public class Administrador extends Persona {
         return numeros+ letrasNombre+ letrasApellido;
     }
 
+    public String getLegajo() {
+        return legajo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

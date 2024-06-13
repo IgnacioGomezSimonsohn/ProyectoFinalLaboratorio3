@@ -28,4 +28,5 @@ public class Factura {
         enviador.enviarCorreo(this.cliente.getEmail(), "Factura de compra", toString());
 
     }
+
 }

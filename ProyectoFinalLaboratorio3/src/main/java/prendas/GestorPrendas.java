@@ -1,5 +1,6 @@
 package prendas;
 
+import exceptionsPersonalizadas.PrendaNoEncontradaException;
 import prendas.enumsPrendas.Color;
 import prendas.enumsPrendas.Genero;
 import prendas.enumsPrendas.Talle;
@@ -19,14 +20,18 @@ public class GestorPrendas {
     public void agregarPrenda (Prenda prenda){
         prendas.put(prenda.getId(),prenda);
     }
-    public boolean eliminarPrenda (String id){
+
+    public boolean eliminarPrenda (String id) throws PrendaNoEncontradaException{
         if (prendas.remove(id)!=null){
             return true;
         }
-        return false;
+        throw new PrendaNoEncontradaException(id);
     }
-    public Prenda obtenerPrenda (String id){
-        return prendas.get(id);
+    public Prenda obtenerPrenda (String id) throws PrendaNoEncontradaException {
+        if (prendas.get(id)!= null){
+            return prendas.get(id);
+        }
+        throw new  PrendaNoEncontradaException(id);
     }
 
     public List listarPrendas(){
