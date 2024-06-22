@@ -1,6 +1,7 @@
 package personas;
 
 import exceptionsPersonalizadas.AdministradorNoEcontrado;
+import exceptionsPersonalizadas.EmailInvalidoException;
 import exceptionsPersonalizadas.EmailOContraseniaIncorrectos;
 import jdk.jshell.spi.SPIResolutionException;
 
@@ -64,10 +65,12 @@ public class GestorPersonas {
             return false;
     }
 
-    public boolean validarEmail(String email) {
-        // Verificar que el email contenga un '@' y termine con '.com'
+    public boolean validarEmail(String email)throws EmailInvalidoException {
         String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        return email.matches(emailRegex);
+
+        if (email.matches(emailRegex)== true){
+            return true;
+        }else throw new EmailInvalidoException();
 
     }
 

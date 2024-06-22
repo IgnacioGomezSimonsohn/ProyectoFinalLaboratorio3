@@ -34,19 +34,19 @@ public class GestorPrendas {
         throw new  PrendaNoEncontradaException(id);
     }
 
-    public List listarPrendas(){
-        ArrayList list=new ArrayList<>();
+    public List<Prenda> listarPrendas(){
+        ArrayList<Prenda> list=new ArrayList<>();
         for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            list.add(entry);
+            list.add(entry.getValue());
         }
         return  list;
     }
     /// Filtro Prendas
-    public List filtrarPrendas(Talle talle){
-        ArrayList list=new ArrayList<>();
+    public List<Prenda> filtrarPrendas(Talle talle){
+        ArrayList<Prenda> list=new ArrayList<>();
         for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
             if(entry.getValue().getTalle().equals(talle)){
-                list.add(entry);
+                list.add(entry.getValue());
             }
         }
         return  list;

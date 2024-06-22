@@ -69,12 +69,13 @@ public class Main {
 //        }catch (AdministradorNoEcontrado e){
 //            System.out.println(e.getMessage());
 //        }
-        try {
-            System.out.println(gestorPersonas.coincideContrasenia(administrador.getEmail(),cliente.getContrasenia()));
-        }catch (EmailOContraseniaIncorrectos e){
-            System.out.println(e.getMessage());
-        }
-        
+//        try {
+//            System.out.println(gestorPersonas.coincideContrasenia(administrador.getEmail(),cliente.getContrasenia()));
+//        }catch (EmailOContraseniaIncorrectos e){
+//            System.out.println(e.getMessage());
+//        }
+
+
 
 
 

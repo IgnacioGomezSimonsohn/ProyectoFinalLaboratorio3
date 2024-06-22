@@ -89,8 +89,7 @@ public abstract class Prenda {
                 Color:%s
                 Genero: %s
                 Precio: %.2f
-                Stock: %d
                 ID: %s
-                """,this.talle, this.color, this.genero, this.precio, this.stock, this.id);
+                """,this.talle, this.color, this.genero, this.precio, this.id);
     }
 }

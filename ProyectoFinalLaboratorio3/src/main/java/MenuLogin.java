@@ -56,10 +56,10 @@ public class MenuLogin {
         System.out.println("Ingrese su email:");
         String email = scanner.nextLine();
 
-        if (!gestorPersonas.validarEmail(email)) {
-            System.out.println("El email ingresado no es válido. Debe contener un '@' y un dominio válido (por ejemplo, '.com').");
-            return;
-        }
+//        if (!gestorPersonas.validarEmail(email)) {
+//            System.out.println("El email ingresado no es válido. Debe contener un '@' y un dominio válido (por ejemplo, '.com').");
+//            return;
+//        }
 
         if (gestorPersonas.emailExiste(email)) {
             System.out.println("El email ya está registrado. Intente con otro email.");
