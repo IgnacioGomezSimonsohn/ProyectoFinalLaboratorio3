@@ -63,6 +63,12 @@ public class GestorPersonas {
             return false;
     }
 
+    public boolean validarEmail(String email) {
+        // Verificar que el email contenga un '@' y termine con '.com'
+        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        return email.matches(emailRegex);
+    }
+
 
 
 
