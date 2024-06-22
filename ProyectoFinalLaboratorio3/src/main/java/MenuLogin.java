@@ -1,6 +1,9 @@
+import personas.Administrador;
 import personas.Cliente;
 import personas.GestorPersonas;
+import personas.Persona;
 
+import java.io.*;
 import java.util.Scanner;
 
 public class MenuLogin {
@@ -86,6 +89,7 @@ public class MenuLogin {
 
         Cliente cliente = new Cliente(nombre, apellido, dni, email, usuario, contrasenia, pais,provincia, ciudad, direccion, codigoPostal);
         gestorPersonas.agregarPersona(cliente);
+        gestorPersonas.guardarDatos();
         System.out.println("Cliente registrado exitosamente!");
     }
 
@@ -102,6 +106,5 @@ public class MenuLogin {
             System.out.println("Email o contraseña incorrectos.");
         }
     }
-
 
 }
