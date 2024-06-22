@@ -46,6 +46,22 @@ public class GestorPersonas {
     }
 
 
+    public boolean iniciarSesionVerificar(String email, String contrasenia) {
+        for (Persona persona : personas) {
+            if (persona.getEmail().equals(email) && persona.getContrasenia().equals(contrasenia)) {
+                return true;
+            }
+        }
+        return false;
+    }
+     public boolean emailExiste (String email) {
+            for (Persona persona : personas) {
+                if (persona.getEmail().equals(email)) {
+                    return true;
+                }
+            }
+            return false;
+    }
 
 
 
