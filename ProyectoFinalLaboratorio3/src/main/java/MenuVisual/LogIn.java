@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 public class LogIn {
     public static GestorPersonas gestorPersonas = new GestorPersonas();
     public static void main(String[] args){
+        // TODO AGREGAR LA FUNCION DE CARGAR DATOS DE PERSONAS ACA
+
         Cliente cliente=new Cliente("Nombre","Apellido","DNI","nacho2012gomez@gmail.com","Usuario","con","Pais","Provincia","Ciudad","Direccion",7600);
         Administrador administrador=new Administrador("AdminNombre","Apellido","DNI","email@gmail.com","Usuario","123");
         gestorPersonas.agregarPersona(cliente);
@@ -58,7 +60,6 @@ public class LogIn {
         loginButton.setBounds(10, 80, 150, 25);
         panel.add(loginButton);
 
-        // Añadir acción al botón de inicio de sesión
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,16 +74,11 @@ public class LogIn {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
                 }
 
-                // Aquí va la lógica para el inicio de sesión
-                // Simplemente abrir el menú de clientes al presionar este botón
-                // Al buscarr la persona por mail y contrasenia, tiene que devolverla
-                // y con un if si es instancia de cliente que se ejecute abrir menu clientes
-                // y si es instacia de admin que se abra el menu de admins
+
 
             }
         });
 
-        // Crear botón de registrarse
         JButton registerButton = new JButton("Registrarse");
         registerButton.setBounds(170, 80, 150, 25);
         panel.add(registerButton);
@@ -96,7 +92,6 @@ public class LogIn {
         });
     }
 
-    // Método para abrir el menú de clientes
     private static void abrirMenuClientes(Persona cliente) {
         MenuClientesUI menuClientes = new MenuClientesUI((Cliente) cliente);
         menuClientes.mostrar();

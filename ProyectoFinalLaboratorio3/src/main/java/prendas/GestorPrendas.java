@@ -1,6 +1,7 @@
 package prendas;
 
 import exceptionsPersonalizadas.PrendaNoEncontradaException;
+import personas.Cliente;
 import prendas.enumsPrendas.Color;
 import prendas.enumsPrendas.Genero;
 import prendas.enumsPrendas.Talle;
@@ -12,13 +13,17 @@ import java.util.Map;
 
 public class GestorPrendas {
     private HashMap <String, Prenda> prendas;
+    private ArrayList<Reserva1> reservas;
 
     public GestorPrendas() {
         this.prendas = new HashMap<>();
+        this.reservas=new ArrayList<>();
     }
+
 
     public void agregarPrenda (Prenda prenda){
         prendas.put(prenda.getId(),prenda);
+
     }
 
     public boolean eliminarPrenda (String id) throws PrendaNoEncontradaException{
@@ -41,438 +46,22 @@ public class GestorPrendas {
         }
         return  list;
     }
-    /// Filtro Prendas
-    public List<Prenda> filtrarPrendas(Talle talle){
-        ArrayList<Prenda> list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if(entry.getValue().getTalle().equals(talle)){
-                list.add(entry.getValue());
-            }
-        }
-        return  list;
+    public boolean reservarPrenda (Prenda prenda, Cliente cliente){
+        Reserva1 reserva = new Reserva1(cliente,prenda);
+        if (this.reservas.add(reserva)){
+            return true;
+        }else return false;
     }
-    public List filtrarPrendas(Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if(entry.getValue().getColor().equals(color)){
-                list.add(entry);
+    public void enviarMailReservar(){
+        for (Reserva1 reserva1 : this.reservas){
+            if (reserva1.getPrenda().getStock()>0){
+                reserva1.avisarCliente();
+                this.reservas.remove(reserva1);
             }
         }
-        return  list;
-    }
-    public List filtrarPrendas(Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if(entry.getValue().getGenero().equals(genero)){
-                list.add(entry);
-            }
-        }
-        return  list;
-    }
-    public List filtrarPrendas(Genero genero, Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if(entry.getValue().getGenero().equals(genero) && entry.getValue().getColor().equals(color)){
-                list.add(entry);
-            }
-        }
-        return  list;
-    }
-    public List filtrarPrendas(Genero genero,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if(entry.getValue().getGenero().equals(genero) && entry.getValue().getTalle().equals(talle)){
-                list.add(entry);
-            }
-        }
-        return  list;
-    }
-    public List filtrarPrendas(Color color,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle)){
-                list.add(entry);
-            }
-        }
-        return  list;
-    }
-    public List filtrarPrendas(Color color, Talle talle, Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle) && entry.getValue().getGenero().equals(genero)){
-                list.add(entry);
-            }
-        }
-        return list;
-    }
-    /////////////////////////////////////////////////////////////////
-
-    /// Filtrar remeras
-
-    public List filtrarRemeras(){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                list.add(entry);
-            }
-        }
-        return  list;
     }
 
-    public List filtrarRemeras(Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                if(entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarRemeras(Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                if(entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarRemeras(Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                if(entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarRemeras(Genero genero, Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarRemeras(Genero genero,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarRemeras(Color color,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
 
-        }
-        return  list;
-    }
-    public List filtrarRemeras(Color color, Talle talle, Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Remera){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle) && entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return list;
-    }
-
-    ////////////////////////////////////////////////////////////////////////
-    // Filtrar Pantalones
-
-    public List filtrarPantalones(){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                list.add(entry);
-            }
-        }
-        return  list;
-    }
-
-    public List filtrarPantalones(Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                if(entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarPantalones(Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                if(entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarPantalones(Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                if(entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarPantalones(Genero genero, Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarPantalones(Genero genero,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarPantalones(Color color,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-
-        }
-        return  list;
-    }
-    public List filtrarPantalones(Color color, Talle talle, Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Pantalon){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle) && entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return list;
-    }
-
-    ///////////////////////////////////////////////////////////
-    // Filtrar Buzos
-
-    public List filtrarBuzos(){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                list.add(entry);
-            }
-        }
-        return  list;
-    }
-
-    public List filtrarBuzos(Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                if(entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarBuzos(Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                if(entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarBuzos(Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                if(entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarBuzos(Genero genero, Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarBuzos(Genero genero,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarBuzos(Color color,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-
-        }
-        return  list;
-    }
-    public List filtrarBuzos(Color color, Talle talle, Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Buzo){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle) && entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return list;
-    }
-
-    ///////////////////////////////////////
-
-    //Filtrar Medias
-    public List filtrarMedias(){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                list.add(entry);
-            }
-        }
-        return  list;
-    }
-
-    public List filtrarMedias(Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                if(entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarMedias(Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                if(entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarMedias(Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                if(entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarMedias(Genero genero, Color color){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getColor().equals(color)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarMedias(Genero genero,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                if(entry.getValue().getGenero().equals(genero) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-        }
-        return  list;
-    }
-    public List filtrarMedias(Color color,Talle talle){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle)){
-                    list.add(entry);
-                }
-            }
-
-        }
-        return  list;
-    }
-    public List filtrarMedias(Color color, Talle talle, Genero genero){
-        ArrayList list=new ArrayList<>();
-        for (Map.Entry<String,Prenda> entry: prendas.entrySet()){
-            if (entry.getValue() instanceof Media){
-                if(entry.getValue().getColor().equals(color) && entry.getValue().getTalle().equals(talle) && entry.getValue().getGenero().equals(genero)){
-                    list.add(entry);
-                }
-            }
-        }
-        return list;
-    }
 
 
 

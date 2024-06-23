@@ -1,0 +1,10 @@
+
+Nombre: Ignacio
+Apellido:Gomez
+DNI: 45622063
+Email: nacho2012gomez@gmail.com
+Usuario: IgnacioGomez
+Legajo: 456igngom
+-----
+
+
