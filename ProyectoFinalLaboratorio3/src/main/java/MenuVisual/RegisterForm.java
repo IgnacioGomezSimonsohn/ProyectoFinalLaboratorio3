@@ -9,10 +9,11 @@ import java.awt.event.ActionListener;
 
 public class RegisterForm {
 
-    private GestorPersonas gestorPersonas=new GestorPersonas();
+    private GestorPersonas gestorPersonas;
     private JFrame registerFrame;
 
-    public RegisterForm() {
+    public RegisterForm(GestorPersonas gestorPersonas1) {
+        this.gestorPersonas=gestorPersonas1;
         createRegisterForm();
     }
 
@@ -96,7 +97,6 @@ public class RegisterForm {
                 gestorPersonas.agregarPersona(nuevoCliente);
                 JOptionPane.showMessageDialog(registerPanel, "Registro exitoso!");
                 registerFrame.dispose();
-               // abrirMenuClientes();
             }
         });
         registerFrame.setVisible(true);
@@ -110,19 +110,5 @@ public class RegisterForm {
         });
     }
 
-//    public static void main(String[] args) {
-//        // Para probar el formulario de registro
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                RegisterForm registerForm = new RegisterForm();
-//                registerForm.mostrar();
-//            }
-//        });
-//    }
 
-//    private static void abrirMenuClientes() {
-//        // Crear y mostrar el menú de clientes
-//        MenuClientesUI menuClientes = new MenuClientesUI();
-//        menuClientes.mostrar();
-//    }
 }

@@ -20,7 +20,7 @@ public class Factura1 {
                 Factura de Compra
                 Fecha: %s
                 %s
-                """,this.fecha,this.carrito);
+                """,this.fecha,this.carrito,this.carrito.getMonto());
     }
 
     public void enviarFactura(){

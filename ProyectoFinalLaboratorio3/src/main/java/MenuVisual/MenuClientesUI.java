@@ -25,12 +25,12 @@ public class MenuClientesUI {
         this.cliente = cliente_;
         this.carrito1 = new Carrito1(cliente_);
 
-        // TODO AGREGAR LA FUNCION DE CARGAR DATOS DE PRENDAS ACA
+        // TODO>  AGREGAR LA FUNCION DE CARGAR DATOS DE PRENDAS ACA
 
-        Buzo buzo = new Buzo(Talle.XS, Color.AZUL, Genero.FEMENINO, 234.54, 4);
-        Remera remera = new Remera(Talle.XS, Color.AZUL, Genero.FEMENINO, 234.54, 4);
-        Pantalon pantalon = new Pantalon(Talle.XS, Color.ROSA, Genero.MASCULINO, 234.54, 0); // Ejemplo con stock 0
-        Media media = new Media(Talle.XL, Color.AZUL, Genero.FEMENINO, 234.54, 4);
+        Buzo buzo = new Buzo(Talle.XS, Color.AZUL, Genero.FEMENINO, 10.0, 4);
+        Remera remera = new Remera(Talle.XS, Color.AZUL, Genero.FEMENINO, 20.0, 4);
+        Pantalon pantalon = new Pantalon(Talle.XS, Color.ROSA, Genero.MASCULINO, 30.0, 0); // Ejemplo con stock 0
+        Media media = new Media(Talle.XL, Color.AZUL, Genero.FEMENINO, 40.0, 4);
 
         gestorPrendas.agregarPrenda(buzo);
         gestorPrendas.agregarPrenda(remera);
@@ -206,8 +206,9 @@ public class MenuClientesUI {
         guardarYSalirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO AGREGAR LA FUNCION DE GUARDAR DATOS DE PERSONAS Y DE PRENDAS ACA
+
                 JOptionPane.showMessageDialog(frame, "Gracias por utilizar la aplicación.");
+                // TODO AGREGAR LA FUNCION DE GUARDAR DATOS DE PERSONAS Y DE PRENDAS ACA
                 // Aquí deberías agregar la lógica para guardar los datos en un archivo
                 // por ejemplo, gestorPrendas.guardarDatos() y gestorPersonas.guardarDatos()
                 frame.dispose();
@@ -220,6 +221,7 @@ public class MenuClientesUI {
     public void mostrar() {
         frame.setVisible(true);
     }
+    // TODO> DEPUES BORRAR ESTA FUNCION DE ABAJO
 
     public static void main(String[] args) {
         Cliente cliente4=new Cliente("a","a","213","nacho2012gomez@gmail.com","usuario","a","a","a","a","a",1);

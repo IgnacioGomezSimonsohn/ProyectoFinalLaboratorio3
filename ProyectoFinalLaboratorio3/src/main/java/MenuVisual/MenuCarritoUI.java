@@ -55,6 +55,8 @@ public class MenuCarritoUI {
                     carrito.eliminarPrenda(prenda);
                     mostrarProductosEnCarrito(panel);
                     JOptionPane.showMessageDialog(panel, "Eliminar producto " + prenda.toString() + " del carrito.");
+                    // Actualizar el monto total del carrito después de eliminar
+                    actualizarMontoLabel(panel);
                 }
             });
             productPanel.add(removeFromCartButton, BorderLayout.EAST);
@@ -82,17 +84,31 @@ public class MenuCarritoUI {
         finalizarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Factura1 factura1=new Factura1(carrito.getCliente(),carrito);
+                Factura1 factura1 = new Factura1(carrito.getCliente(), carrito);
                 factura1.enviarFactura();
                 JOptionPane.showMessageDialog(panel, "Compra finalizada. Gracias por su compra!");
                 carrito.limpiarCarrito();
                 mostrarProductosEnCarrito(panel);
+                // Actualizar el monto total del carrito después de finalizar la compra
+                actualizarMontoLabel(panel);
             }
         });
         buttonPanel.add(finalizarButton);
 
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
+        // Agregar el JLabel que muestra el monto del carrito
+        JLabel montoLabel = new JLabel("Monto total del carrito: $" + carrito.getMonto());
+        panel.add(montoLabel, BorderLayout.NORTH);
+
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    private void actualizarMontoLabel(JPanel panel) {
+        // Actualizar el texto del JLabel con el monto total actualizado
+        JLabel montoLabel = new JLabel("Monto total del carrito: $" + carrito.getMonto());
+        panel.add(montoLabel, BorderLayout.NORTH);
         panel.revalidate();
         panel.repaint();
     }
@@ -101,12 +117,5 @@ public class MenuCarritoUI {
         frame.setVisible(true);
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                MenuCarritoUI menu = new MenuCarritoUI();
-//                menu.mostrar();
-//            }
-//        });
-//    }
+
 }

@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class LogIn {
     public static GestorPersonas gestorPersonas = new GestorPersonas();
     public static void main(String[] args){
-        // TODO AGREGAR LA FUNCION DE CARGAR DATOS DE PERSONAS ACA
+        // TODO>  AGREGAR LA FUNCION DE CARGAR DATOS DE PERSONAS ACA
 
         Cliente cliente=new Cliente("Nombre","Apellido","DNI","nacho2012gomez@gmail.com","Usuario","con","Pais","Provincia","Ciudad","Direccion",7600);
         Administrador administrador=new Administrador("AdminNombre","Apellido","DNI","email@gmail.com","Usuario","123");
@@ -85,7 +85,7 @@ public class LogIn {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegisterForm registerForm = new RegisterForm();
+                RegisterForm registerForm = new RegisterForm(gestorPersonas);
                 registerForm.mostrar();
 
             }

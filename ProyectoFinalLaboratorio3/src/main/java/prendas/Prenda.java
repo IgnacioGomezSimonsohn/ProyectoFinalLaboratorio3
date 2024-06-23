@@ -85,11 +85,7 @@ public abstract class Prenda {
     @Override
     public String toString(){
         return String.format("""
-                Talle: %s
-                Color:%s
-                Genero: %s
-                Precio: %.2f
-                ID: %s
-                """,this.talle, this.color, this.genero, this.precio, this.id);
+                %s %s %s %.2f
+                """,this.talle, this.color, this.genero, this.precio);
     }
 }

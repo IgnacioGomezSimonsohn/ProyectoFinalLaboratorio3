@@ -14,7 +14,6 @@ public class Buzo extends Prenda{
     @Override
     public String toString(){
         return """
-                
                 Buzo:
                 """ + super.toString();
     }

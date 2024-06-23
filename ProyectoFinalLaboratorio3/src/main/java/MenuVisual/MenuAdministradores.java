@@ -210,8 +210,11 @@ public class MenuAdministradores {
                                             double nuevoPrecio = Double.parseDouble(nuevoPrecioStr);
                                             int nuevoStock = Integer.parseInt(nuevoStockStr);
                                             if (nuevoPrecio > 0 && nuevoStock > 0) {
+                                                // Actualizar directamente los valores en la prenda
                                                 prenda.setPrecio(nuevoPrecio);
                                                 prenda.setStock(nuevoStock);
+                                                // Actualizar la etiqueta de producto en el UI
+                                                productLabel.setText(prenda.toString());
                                                 gestorPrendas.enviarMailReservar();
                                                 JOptionPane.showMessageDialog(panel, "Producto " + prenda.toString() + " actualizado con éxito.");
                                             } else {
@@ -258,7 +261,7 @@ public class MenuAdministradores {
     public void mostrar() {
         frame.setVisible(true);
     }
-
+// TODO> DEPUES BORRAR ESTA FUNCION DE ABAJO
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
