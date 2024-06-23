@@ -13,7 +13,9 @@ public class LogIn {
     public static GestorPersonas gestorPersonas = new GestorPersonas();
     public static void main(String[] args){
         Cliente cliente=new Cliente("Nombre","Apellido","DNI","nacho2012gomez@gmail.com","Usuario","con","Pais","Provincia","Ciudad","Direccion",7600);
+        Administrador administrador=new Administrador("AdminNombre","Apellido","DNI","email@gmail.com","Usuario","123");
         gestorPersonas.agregarPersona(cliente);
+        gestorPersonas.agregarPersona(administrador);
 
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +67,7 @@ public class LogIn {
                     if (persona instanceof Cliente){
                         abrirMenuClientes(persona);
                     }else if (persona instanceof Administrador){
-                        //abrirMenuAdministradroes();
+                        abrirMenuAdministradroes();
                     }
                 } catch (EmailOContraseniaIncorrectos ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
@@ -98,5 +100,9 @@ public class LogIn {
     private static void abrirMenuClientes(Persona cliente) {
         MenuClientesUI menuClientes = new MenuClientesUI((Cliente) cliente);
         menuClientes.mostrar();
+    }
+    private static void abrirMenuAdministradroes() {
+        MenuAdministradores menuAdministradores = new MenuAdministradores();
+        menuAdministradores.mostrar();
     }
 }
