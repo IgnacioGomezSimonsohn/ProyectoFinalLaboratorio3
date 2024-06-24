@@ -1,19 +1,25 @@
 package prendas;
 
+import GestionArchivos.Impresora;
 import exceptionsPersonalizadas.PrendaNoEncontradaException;
 import personas.Cliente;
 import prendas.enumsPrendas.Color;
 import prendas.enumsPrendas.Genero;
 import prendas.enumsPrendas.Talle;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class GestorPrendas {
     private HashMap <String, Prenda> prendas;
     private ArrayList<Reserva1> reservas;
+    private Impresora<Prenda> impresora = new Impresora<>();
+
 
     public GestorPrendas() {
         this.prendas = new HashMap<>();
@@ -60,6 +66,13 @@ public class GestorPrendas {
             }
         }
     }
+    public List<Prenda> cargarPrendas(String filename) throws IOException {
+        return impresora.cargar(filename, new TypeToken<List<Prenda>>() {});
+    }
+    public void guardarPrendas(List<Prenda> prendas, String filename) throws IOException {
+        impresora.guardar(prendas, filename);
+    }
+
 
 
 

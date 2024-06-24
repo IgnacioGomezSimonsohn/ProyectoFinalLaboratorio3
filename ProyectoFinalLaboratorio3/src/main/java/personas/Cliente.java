@@ -1,10 +1,17 @@
 package personas;
+import com.google.gson.annotations.Expose;
+
 import java.util.Objects;
 public class Cliente extends Persona{
+    @Expose
     private String pais;
+    @Expose
     private String provincia;
+    @Expose
     private String ciudad;
+    @Expose
     private String direccion;
+    @Expose
     private int codigoPostal;
 
     public Cliente(String nombre, String apellido, String dni, String email, String usuario, String contrasenia, String pais, String provincia, String ciudad, String direccion, int codigoPostal) {

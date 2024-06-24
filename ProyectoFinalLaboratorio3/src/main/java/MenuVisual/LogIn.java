@@ -9,15 +9,26 @@ import personas.Persona;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.List;
+
 public class LogIn {
     public static GestorPersonas gestorPersonas = new GestorPersonas();
     public static void main(String[] args){
+        try {
+            List<Persona> listaPersonas = gestorPersonas.cargarPersonas("personas");
+            for (Persona persona : listaPersonas){
+                gestorPersonas.agregarPersona(persona);
+            }
+        }catch (IOException ex){
+            System.err.println("Error al cargar las personas: " + ex.getMessage());
+        }
         // TODO>  AGREGAR LA FUNCION DE CARGAR DATOS DE PERSONAS ACA
-
-        Cliente cliente=new Cliente("Nombre","Apellido","DNI","nacho2012gomez@gmail.com","Usuario","con","Pais","Provincia","Ciudad","Direccion",7600);
-        Administrador administrador=new Administrador("AdminNombre","Apellido","DNI","email@gmail.com","Usuario","123");
-        gestorPersonas.agregarPersona(cliente);
-        gestorPersonas.agregarPersona(administrador);
+        //gestorPersonas.cargarDatos();
+//        Cliente cliente=new Cliente("Nombre","Apellido","DNI","nacho2012gomez@gmail.com","Usuario","con","Pais","Provincia","Ciudad","Direccion",7600);
+//        Administrador administrador=new Administrador("AdminNombre","Apellido","DNI","email@gmail.com","Usuario","123");
+//        gestorPersonas.agregarPersona(cliente);
+//        gestorPersonas.agregarPersona(administrador);
 
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

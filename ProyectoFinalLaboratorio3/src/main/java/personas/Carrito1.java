@@ -37,13 +37,11 @@ public class Carrito1 {
         return prendas;
     }
 
-    public boolean agregarPrenda(Prenda prenda){
+    public void agregarPrenda(Prenda prenda){
         if (prenda.getStock()>=1){
             this.monto+=prenda.getPrecio();
-            prenda.setStock(prenda.getStock()-1);
-            return this.prendas.add(prenda);
+            this.prendas.add(prenda);
         }
-        return false;
 
     }
     public boolean eliminarPrenda(Prenda prenda){

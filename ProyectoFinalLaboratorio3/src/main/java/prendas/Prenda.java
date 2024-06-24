@@ -1,17 +1,24 @@
 package prendas;
 
+import com.google.gson.annotations.Expose;
 import prendas.enumsPrendas.Color;
 import prendas.enumsPrendas.Genero;
 import prendas.enumsPrendas.Talle;
 
 import java.util.Objects;
 
-public abstract class Prenda {
+public class Prenda {
+    @Expose
     private String id;
+    @Expose
     private Talle talle;
+    @Expose
     private Color color;
+    @Expose
     private Genero genero;
+    @Expose
     private Double precio;
+    @Expose
     private int stock;
 
     public Prenda(Talle talle, Color color, Genero genero, Double precio, int stock) {
@@ -69,6 +76,9 @@ public abstract class Prenda {
     public void setStock(int stock) {
         this.stock = stock;
     }
+    public void restarStock(){
+        this.stock = this.stock -1;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -85,7 +95,7 @@ public abstract class Prenda {
     @Override
     public String toString(){
         return String.format("""
-                %s %s %s %.2f
-                """,this.talle, this.color, this.genero, this.precio);
+                | %s | %s | %s | $%.2f | %d | id: %s
+                """,this.talle, this.color, this.genero, this.precio,this.stock,this.id);
     }
 }

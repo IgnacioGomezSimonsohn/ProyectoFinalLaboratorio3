@@ -1,11 +1,19 @@
 package personas;
+import com.google.gson.annotations.Expose;
+
 import java.util.Objects;
-public abstract class Persona {
+public  class Persona {
+    @Expose
     private String nombre;
+    @Expose
     private String apellido;
+    @Expose
     private String dni;
+    @Expose
     private final String email;
+    @Expose
     private String usuario;
+    @Expose
     private String contrasenia;
 
     public Persona(String nombre, String apellido, String dni, String email, String usuario, String contrasenia) {

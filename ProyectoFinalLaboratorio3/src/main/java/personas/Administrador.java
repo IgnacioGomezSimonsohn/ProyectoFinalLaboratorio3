@@ -1,11 +1,13 @@
 package personas;
 
+import com.google.gson.annotations.Expose;
 import personas.Persona;
 
 import java.util.Objects;
 import java.util.SplittableRandom;
 
 public class Administrador extends Persona {
+    @Expose
     private final String legajo;
 
     public Administrador(String nombre, String apellido, String dni, String email, String usuario, String contrasenia) {
