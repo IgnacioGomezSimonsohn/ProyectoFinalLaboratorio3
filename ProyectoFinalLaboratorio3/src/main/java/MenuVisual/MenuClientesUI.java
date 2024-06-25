@@ -31,7 +31,7 @@ public class MenuClientesUI {
         this.cliente = cliente_;
         this.carrito1 = new Carrito1(cliente_);
 
-        // Cargar datos de prendas al iniciar la interfaz
+
         try {
             List<Prenda> listaPrendas = gestorPrendas.cargarPrendas("prendas");
             for (Prenda prenda : listaPrendas) {

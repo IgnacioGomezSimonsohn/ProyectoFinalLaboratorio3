@@ -3,6 +3,7 @@ package prendas;
 import GestionArchivos.Impresora;
 import exceptionsPersonalizadas.PrendaNoEncontradaException;
 import personas.Cliente;
+import personas.Persona;
 import prendas.enumsPrendas.Color;
 import prendas.enumsPrendas.Genero;
 import prendas.enumsPrendas.Talle;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class GestorPrendas {
     private HashMap <String, Prenda> prendas;
     private ArrayList<Reserva1> reservas;
-    private Impresora<Prenda> impresora = new Impresora<>();
+    private Impresora impresora = new Impresora();
 
 
     public GestorPrendas() {
@@ -66,12 +67,30 @@ public class GestorPrendas {
             }
         }
     }
+
     public List<Prenda> cargarPrendas(String filename) throws IOException {
-        return impresora.cargar(filename, new TypeToken<List<Prenda>>() {});
+        try {
+            List<Prenda> listaPrendas = impresora.cargarPrendas(filename);
+            // Limpia personas y agrega las nuevas.
+            this.prendas.clear();
+            for(Prenda prenda: listaPrendas){
+                this.prendas.put(prenda.getId(), prenda);
+            }
+            return listaPrendas;
+        } catch (IOException ex) {
+            throw new IOException("Error al cargar las personas desde el archivo " + filename, ex);
+        }
     }
+
+
+
     public void guardarPrendas(List<Prenda> prendas, String filename) throws IOException {
-        impresora.guardar(prendas, filename);
+        impresora.guardarPrendas(prendas, filename);
     }
+
+
+
+
 
 
 

@@ -96,12 +96,6 @@ public  class Persona {
     }
 
 
-    public static <T> boolean isAdministrador(T t) {
-        return false;
-    }
 
-    public static <T> boolean isCliente(T t) {
-        return false;
-    }
 
 }

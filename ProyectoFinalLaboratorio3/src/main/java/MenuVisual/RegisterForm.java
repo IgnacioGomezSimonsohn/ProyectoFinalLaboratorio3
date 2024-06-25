@@ -6,6 +6,7 @@ import personas.GestorPersonas;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class RegisterForm {
 
@@ -23,6 +24,7 @@ public class RegisterForm {
         registerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         registerFrame.setSize(400, 450);
         registerFrame.setLocationRelativeTo(null);
+
 
         // Crear el panel y establecer el diseño
         JPanel registerPanel = new JPanel();
@@ -93,8 +95,15 @@ public class RegisterForm {
                     JOptionPane.showMessageDialog(registerPanel, "Código Postal debe ser un número entero.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                Cliente nuevoCliente = new Cliente(nombre, apellido, dni, email, usuario, contrasena, pais, provincia, ciudad, direccion, codigoPostal);
-                gestorPersonas.agregarPersona(nuevoCliente);
+
+                try {
+                    Cliente nuevoCliente = new Cliente(nombre, apellido, dni, email, usuario, contrasena, pais, provincia, ciudad, direccion, codigoPostal);
+                    gestorPersonas.agregarPersona(nuevoCliente);
+                    gestorPersonas.guardarPersonas(gestorPersonas.listarPersonas(), "personas");
+                } catch (IOException ex) {
+
+                    JOptionPane.showMessageDialog(registerFrame, "Error al guardar los datos de personas.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 JOptionPane.showMessageDialog(registerPanel, "Registro exitoso!");
                 registerFrame.dispose();
             }

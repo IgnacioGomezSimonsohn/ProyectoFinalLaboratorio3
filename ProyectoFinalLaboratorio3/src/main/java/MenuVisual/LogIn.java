@@ -23,13 +23,6 @@ public class LogIn {
         }catch (IOException ex){
             System.err.println("Error al cargar las personas: " + ex.getMessage());
         }
-        // TODO>  AGREGAR LA FUNCION DE CARGAR DATOS DE PERSONAS ACA
-        //gestorPersonas.cargarDatos();
-//        Cliente cliente=new Cliente("Nombre","Apellido","DNI","nacho2012gomez@gmail.com","Usuario","con","Pais","Provincia","Ciudad","Direccion",7600);
-//        Administrador administrador=new Administrador("AdminNombre","Apellido","DNI","email@gmail.com","Usuario","123");
-//        gestorPersonas.agregarPersona(cliente);
-//        gestorPersonas.agregarPersona(administrador);
-
         JFrame frame = new JFrame("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(350, 200);

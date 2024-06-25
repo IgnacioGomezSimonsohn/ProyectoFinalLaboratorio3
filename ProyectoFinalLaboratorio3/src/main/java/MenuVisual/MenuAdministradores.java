@@ -27,7 +27,7 @@ public class MenuAdministradores{
     public MenuAdministradores() {
 
         try {
-            List<Persona> listaPersonas = gestorAdministradores.cargarPersonas("personas");
+            List<Persona> listaPersonas = gestorAdministradores. cargarPersonas("personas");
             for (Persona persona : listaPersonas){
                 gestorAdministradores.agregarPersona(persona);
             }
@@ -37,10 +37,12 @@ public class MenuAdministradores{
 
 
         // TODO AGREGAR LA FUNCION DE CARGAR DATOS DE PERSONAS Y DE PRENDAS ACA
+
         try {
             List<Prenda> listaPrendas = gestorPrendas.cargarPrendas("prendas");
             for (Prenda prenda : listaPrendas) {
                 gestorPrendas.agregarPrenda(prenda);
+                System.out.println("aks");
             }
         } catch (IOException e) {
             System.err.println("Error al cargar las prendas: " + e.getMessage());

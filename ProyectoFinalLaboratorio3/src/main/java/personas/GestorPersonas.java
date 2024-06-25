@@ -20,7 +20,7 @@ import prendas.Prenda;
 public class GestorPersonas {
 
     private HashSet<Persona> personas;
-    private Impresora<Persona> impresora = new Impresora<>();
+    private Impresora impresora = new Impresora();
 
     public GestorPersonas() {
         this.personas=new HashSet<>();
@@ -60,6 +60,13 @@ public class GestorPersonas {
         }
         return administradores;
     }
+    public List<Persona> listarPersonas(){
+        List<Persona> personasLista=new ArrayList<>();
+        for (Persona persona : this.personas){
+            personasLista.add(persona);
+        }
+        return personasLista;
+    }
 
 
     public boolean iniciarSesionVerificar(String email, String contrasenia) {
@@ -91,7 +98,7 @@ public class GestorPersonas {
 
     public List<Persona> cargarPersonas(String filename) throws IOException {
         try {
-            List<Persona> listaPersonas = impresora.cargar(filename, new TypeToken<List<Persona>>() {});
+            List<Persona> listaPersonas = impresora.cargarPersonas(filename);
             // Limpia personas y agrega las nuevas.
             this.personas.clear();
             this.personas.addAll(listaPersonas);
@@ -104,7 +111,7 @@ public class GestorPersonas {
 
 
     public void guardarPersonas(List<Persona> personas, String filename) throws IOException {
-        impresora.guardar(personas, filename);
+        impresora.guardarPersonas(personas, filename);
     }
 
 
