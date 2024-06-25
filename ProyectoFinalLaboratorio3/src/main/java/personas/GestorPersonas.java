@@ -4,6 +4,7 @@ import GestionArchivos.Impresora;
 import exceptionsPersonalizadas.AdministradorNoEcontrado;
 import exceptionsPersonalizadas.EmailInvalidoException;
 import exceptionsPersonalizadas.EmailOContraseniaIncorrectos;
+import exceptionsPersonalizadas.LongitudInvalidaException;
 import jdk.jshell.spi.SPIResolutionException;
 
 import java.io.*;
@@ -93,6 +94,12 @@ public class GestorPersonas {
             return true;
         }else throw new EmailInvalidoException();
 
+    }
+
+    public boolean validarLongitud(String texto) throws LongitudInvalidaException{
+        if(texto.length()>=3){
+            return true;
+        }else throw new LongitudInvalidaException();
     }
 
 

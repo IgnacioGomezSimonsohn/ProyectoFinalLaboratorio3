@@ -2,6 +2,7 @@ package MenuVisual;
 import com.google.gson.reflect.TypeToken;
 import exceptionsPersonalizadas.AdministradorNoEcontrado;
 import exceptionsPersonalizadas.EmailInvalidoException;
+import exceptionsPersonalizadas.LongitudInvalidaException;
 import exceptionsPersonalizadas.PrendaNoEncontradaException;
 import personas.Administrador;
 import personas.GestorPersonas;
@@ -114,8 +115,26 @@ public class MenuAdministradores {
                 int result = JOptionPane.showConfirmDialog(frame, addAdminPanel, "Agregar Nuevo Administrador", JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                     String nombre = nombreField.getText();
+                    try{
+                        gestorAdministradores.validarLongitud(nombre);
+                    } catch (LongitudInvalidaException ex2) {
+                        JOptionPane.showMessageDialog(frame, ex2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     String apellido = apellidoField.getText();
+                    try{
+                        gestorAdministradores.validarLongitud(apellido);
+                    } catch (LongitudInvalidaException ex3) {
+                        JOptionPane.showMessageDialog(frame, ex3.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     String dni = dniField.getText();
+                    try{
+                        gestorAdministradores.validarLongitud(dni);
+                    } catch (LongitudInvalidaException ex4) {
+                        JOptionPane.showMessageDialog(frame, ex4.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     String email = emailField.getText();
                     try {
                         gestorAdministradores.validarEmail(email);
