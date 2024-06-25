@@ -24,6 +24,8 @@ public  class Persona {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
     }
+
+
     public String getNombre() {
         return nombre;
     }
@@ -82,18 +84,24 @@ public  class Persona {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("""
-                
+                                
                 Nombre: %s
                 Apellido:%s
                 DNI: %s
                 Email: %s
                 Usuario: %s
-                """,this.nombre,this.apellido,this.dni,this.email,this.usuario);
+                """, this.nombre, this.apellido, this.dni, this.email, this.usuario);
     }
 
 
+    public static <T> boolean isAdministrador(T t) {
+        return false;
+    }
 
+    public static <T> boolean isCliente(T t) {
+        return false;
+    }
 
 }

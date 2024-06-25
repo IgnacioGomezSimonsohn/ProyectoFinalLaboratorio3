@@ -50,5 +50,8 @@ public class Administrador extends Persona {
                 
                 """,this.legajo);
     }
-
+    @Override
+    public boolean isAdministrador() {
+        return true;
+    }
 }

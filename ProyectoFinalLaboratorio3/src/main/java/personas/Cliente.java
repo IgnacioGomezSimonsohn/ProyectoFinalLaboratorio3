@@ -92,6 +92,9 @@ public class Cliente extends Persona{
     }
 
 
+    public boolean isCliente() {
+        return true;
+    }
 
 
 }

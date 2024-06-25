@@ -13,6 +13,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import personas.Administrador;
+import personas.Cliente;
+import personas.Persona;
+
 import java.io.IOException;
 
 
@@ -31,6 +35,7 @@ public class Impresora<T> {
     private String getFullPath(String filename) {
         return DEFAULT_PATH + "/" + filename + JSON_EXTENSION;
     }
+
     public String guardar(List<T> datos, String filename) throws IOException {
         Gson gson = gson();
 
@@ -41,32 +46,41 @@ public class Impresora<T> {
 
         String fullPath = getFullPath(filename);
         logger.log(Level.INFO, "Guardando en archivo: " + fullPath);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("Administradores", gson.toJsonTree(datos.stream().filter(Persona::isAdministrador).collect(Collectors.toList())));
+        ;
+        jsonObject.add("Clientes", gson.toJsonTree(datos.stream().filter(Persona::isCliente).collect(Collectors.toList())));
 
         try (FileWriter writer = new FileWriter(fullPath)) {
-            gson.toJson(datos, writer);
+            gson.toJson(jsonObject, writer);
             return fullPath;
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error al generar el archivo " + fullPath, e);
             throw new IOException("Error al generar el archivo " + fullPath, e);
         }
     }
-    public List<T> cargar(String filename, TypeToken<List<T>> typeToken) throws IOException {
-        String fullPath = getFullPath(filename);
-        File file = new File(fullPath);
-        if (!file.exists()) {
-            logger.log(Level.WARNING, "El archivo no existe: " + fullPath);
-            return new ArrayList<>();
-        }
+
+    public List<Persona> cargar(String filename) throws IOException {
         try {
             Gson gson = gson();
-            String json = Files.readString(Paths.get(fullPath));
-            return gson.fromJson(json, typeToken.getType());
+            String json = Files.readString(Paths.get(filename));
+            JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
+
+            List<Persona> clientes = gson.fromJson(jsonObject.get("Clientes"), new TypeToken<List<Cliente>>() {
+            }.getType());
+            List<Persona> administradores = gson.fromJson(jsonObject.get("Administradores"), new TypeToken<List<Administrador>>() {
+            }.getType());
+
+            List<Persona> personas = new ArrayList<>();
+            personas.addAll(administradores);
+            personas.addAll(clientes);
+            ;
+
+            return personas;
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Error al leer el archivo " + fullPath, e);
-            throw new IOException("Error al leer el archivo " + fullPath, e);
-
+            logger.log(Level.SEVERE, "Error al leer el archivo " + filename, e);
+            throw new IOException("Error al leer el archivo " + filename, e);
         }
 
-        }
-
+    }
 }

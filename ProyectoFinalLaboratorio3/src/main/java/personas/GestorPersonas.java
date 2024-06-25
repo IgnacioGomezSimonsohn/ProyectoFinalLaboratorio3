@@ -100,9 +100,13 @@ public class GestorPersonas {
             throw new IOException("Error al cargar las personas desde el archivo " + filename, ex);
         }
     }
+
+
+
     public void guardarPersonas(List<Persona> personas, String filename) throws IOException {
         impresora.guardar(personas, filename);
     }
+
 
 //    public void cargarDatos() {
 //        try (BufferedReader br = new BufferedReader(new FileReader("usuarios.json"))) {
