@@ -27,7 +27,7 @@ public class MenuAdministradores{
     public MenuAdministradores() {
 
         try {
-            List<Persona> listaPersonas = gestorAdministradores. cargarPersonas("personas");
+            List<Persona> listaPersonas = gestorAdministradores.cargarPersonas("personas");
             for (Persona persona : listaPersonas){
                 gestorAdministradores.agregarPersona(persona);
             }
@@ -420,15 +420,14 @@ public class MenuAdministradores{
 
 
 // TODO> DEPUES BORRAR ESTA FUNCION DE ABAJO
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MenuAdministradores().mostrar();
-            }
-        });
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new MenuAdministradores().mostrar();
+//            }
+//      });
     }
 
-}
 
 

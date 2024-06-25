@@ -25,7 +25,7 @@ public class MenuClientesUI {
     private JComboBox<String> colorComboBox;
     private JComboBox<String> talleComboBox;
     private JComboBox<String> generoComboBox;
-    private GestorPrendas gestorPrendas = new GestorPrendas(); // Suponiendo que tienes una clase GestorPrendas
+    private GestorPrendas gestorPrendas = new GestorPrendas(); // Suponiendo que tenes una clase GestorPrendas
 
     public MenuClientesUI(Cliente cliente_) {
         this.cliente = cliente_;
