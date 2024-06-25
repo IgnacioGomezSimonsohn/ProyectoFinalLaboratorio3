@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class MenuAdministradores{
+public class MenuAdministradores {
     private JFrame frame;
     private GestorPrendas gestorPrendas = new GestorPrendas();
     private GestorPersonas gestorAdministradores = new GestorPersonas();
@@ -28,10 +28,10 @@ public class MenuAdministradores{
 
         try {
             List<Persona> listaPersonas = gestorAdministradores.cargarPersonas("personas");
-            for (Persona persona : listaPersonas){
+            for (Persona persona : listaPersonas) {
                 gestorAdministradores.agregarPersona(persona);
             }
-        }catch (IOException ex){
+        } catch (IOException ex) {
             System.err.println("Error al cargar las personas: " + ex.getMessage());
         }
 
@@ -396,7 +396,7 @@ public class MenuAdministradores{
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    gestorPrendas.guardarPrendas(gestorPrendas.listarPrendas(),"prendas");
+                    gestorPrendas.guardarPrendas(gestorPrendas.listarPrendas(), "prendas");
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(frame, "Error al guardar los datos de prendas.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -417,17 +417,7 @@ public class MenuAdministradores{
     public void mostrar() {
         frame.setVisible(true);
     }
-
-
-// TODO> DEPUES BORRAR ESTA FUNCION DE ABAJO
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new MenuAdministradores().mostrar();
-//            }
-//      });
-    }
+}
 
 
 

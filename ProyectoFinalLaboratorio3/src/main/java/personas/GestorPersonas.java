@@ -113,31 +113,5 @@ public class GestorPersonas {
         impresora.guardarPersonas(personas, filename);
     }
 
-
-//    public void cargarDatos() {
-//        try (BufferedReader br = new BufferedReader(new FileReader("usuarios.json"))) {
-//            Type setType = new TypeToken<Set<Persona>>() {}.getType();
-//            personas = gson.fromJson(br, setType);
-//            if (personas == null) {
-//                personas = new HashSet<>();
-//            }
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Archivo no encontrado, creando nuevo archivo...");
-//            personas = new HashSet<>();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    public void guardarDatos() {
-//        try (BufferedWriter bw = new BufferedWriter(new FileWriter("usuarios.json"))) {
-//            gson.toJson(personas, bw);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-
 }
 

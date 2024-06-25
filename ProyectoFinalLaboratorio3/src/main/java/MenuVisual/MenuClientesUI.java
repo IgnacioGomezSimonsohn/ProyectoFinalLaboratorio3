@@ -252,17 +252,4 @@ public class MenuClientesUI {
     public void mostrar() {
         frame.setVisible(true);
     }
-
-    // TODO> DEPUES BORRAR ESTA FUNCION DE ABAJO
-
-    public static void main(String[] args) {
-        Cliente cliente4=new Cliente("a","a","213","nacho2012gomez@gmail.com","usuario","a","a","a","a","a",1);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new MenuClientesUI(cliente4);
-            }
-        });
-    }
-
-
 }

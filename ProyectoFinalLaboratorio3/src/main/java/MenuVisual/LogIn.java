@@ -18,11 +18,18 @@ public class LogIn {
 
         try {
             List<Persona> listaPersonas = gestorPersonas.cargarPersonas("personas");
-
             for (Persona persona : listaPersonas){
                 gestorPersonas.agregarPersona(persona);
 
             }
+
+            if (gestorPersonas.listarAdministradores().isEmpty()) {
+                Administrador admin = new Administrador("admin", "admin", "45400287", "admin123@gmail.com", "admin", "123");
+                gestorPersonas.agregarPersona(admin);
+                gestorPersonas.guardarPersonas(gestorPersonas.listarPersonas(), "personas");
+            }
+
+
 
         }catch (IOException ex){
             System.err.println("Error al cargar las personas: " + ex.getMessage());
