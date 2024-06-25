@@ -15,11 +15,15 @@ import java.util.List;
 public class LogIn {
     public static GestorPersonas gestorPersonas = new GestorPersonas();
     public static void main(String[] args){
+
         try {
             List<Persona> listaPersonas = gestorPersonas.cargarPersonas("personas");
+
             for (Persona persona : listaPersonas){
                 gestorPersonas.agregarPersona(persona);
+
             }
+
         }catch (IOException ex){
             System.err.println("Error al cargar las personas: " + ex.getMessage());
         }

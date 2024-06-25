@@ -55,7 +55,6 @@ public class MenuCarritoUI {
                     carrito.eliminarPrenda(prenda);
                     mostrarProductosEnCarrito(panel);
                     JOptionPane.showMessageDialog(panel, "Eliminar producto " + prenda.toString() + " del carrito.");
-                    // Actualizar el monto total del carrito después de eliminar
                     actualizarMontoLabel(panel);
                 }
             });
@@ -89,7 +88,6 @@ public class MenuCarritoUI {
                 JOptionPane.showMessageDialog(panel, "Compra finalizada. Gracias por su compra!");
                 carrito.limpiarCarrito();
                 mostrarProductosEnCarrito(panel);
-                // Actualizar el monto total del carrito después de finalizar la compra
                 actualizarMontoLabel(panel);
             }
         });
@@ -97,7 +95,6 @@ public class MenuCarritoUI {
 
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Agregar el JLabel que muestra el monto del carrito
         JLabel montoLabel = new JLabel("Monto total del carrito: $" + carrito.getMonto());
         panel.add(montoLabel, BorderLayout.NORTH);
 
@@ -106,7 +103,6 @@ public class MenuCarritoUI {
     }
 
     private void actualizarMontoLabel(JPanel panel) {
-        // Actualizar el texto del JLabel con el monto total actualizado
         JLabel montoLabel = new JLabel("Monto total del carrito: $" + carrito.getMonto());
         panel.add(montoLabel, BorderLayout.NORTH);
         panel.revalidate();

@@ -153,14 +153,14 @@ public class MenuClientesUI {
 
         productListPanel = new JPanel();
         productListPanel.setLayout(new BoxLayout(productListPanel, BoxLayout.Y_AXIS));
-        actualizarProductos(); // Llamada inicial para mostrar los productos
+        actualizarProductos();
 
         panel.add(new JScrollPane(productListPanel), BorderLayout.CENTER);
 
         ActionListener actualizarPrendas = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                actualizarProductos(); // Actualizar productos al cambiar los filtros
+                actualizarProductos();
             }
         };
 
@@ -216,7 +216,7 @@ public class MenuClientesUI {
                             carrito1.agregarPrenda(prenda);
                             prenda.restarStock();
                             JOptionPane.showMessageDialog(panel, "Producto " + prenda.toString() + " agregado al carrito.");
-                            actualizarProductos(); // Actualizar la lista después de agregar al carrito
+                            actualizarProductos();
                         }
                     });
                 } else {
@@ -228,7 +228,7 @@ public class MenuClientesUI {
                                 boolean reservado = gestorPrendas.reservarPrenda(prenda, cliente);
                                 if (reservado) {
                                     JOptionPane.showMessageDialog(panel, "Producto " + prenda.toString() + " reservado para usted.");
-                                    actualizarProductos(); // Actualizar la lista después de reservar
+                                    actualizarProductos();
                                 } else {
                                     JOptionPane.showMessageDialog(panel, "No se pudo reservar el producto " + prenda.toString() + ".");
                                 }
@@ -252,6 +252,7 @@ public class MenuClientesUI {
     public void mostrar() {
         frame.setVisible(true);
     }
+
     // TODO> DEPUES BORRAR ESTA FUNCION DE ABAJO
 
     public static void main(String[] args) {
@@ -262,4 +263,6 @@ public class MenuClientesUI {
             }
         });
     }
+
+
 }

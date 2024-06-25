@@ -19,19 +19,16 @@ public class RegisterForm {
     }
 
     private void createRegisterForm() {
-        // Crear el marco para el formulario de registro
         registerFrame = new JFrame("Registro");
         registerFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         registerFrame.setSize(400, 450);
         registerFrame.setLocationRelativeTo(null);
 
 
-        // Crear el panel y establecer el diseño
         JPanel registerPanel = new JPanel();
         registerPanel.setLayout(null);
         registerFrame.add(registerPanel);
 
-        // Crear y posicionar los componentes del formulario de registro
         JLabel[] labels = {
                 new JLabel("Nombre:"), new JLabel("Apellido:"), new JLabel("DNI:"),
                 new JLabel("Email:"), new JLabel("Usuario:"), new JLabel("Contraseña:"),
@@ -62,12 +59,10 @@ public class RegisterForm {
             yPos += 30;
         }
 
-        // Crear botón para enviar el formulario de registro
         JButton submitButton = new JButton("Registrarse");
         submitButton.setBounds(140, yPos, 150, 25);
         registerPanel.add(submitButton);
 
-        // Añadir acción al botón de registrarse
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

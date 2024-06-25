@@ -71,7 +71,6 @@ public class GestorPrendas {
     public List<Prenda> cargarPrendas(String filename) throws IOException {
         try {
             List<Prenda> listaPrendas = impresora.cargarPrendas(filename);
-            // Limpia personas y agrega las nuevas.
             this.prendas.clear();
             for(Prenda prenda: listaPrendas){
                 this.prendas.put(prenda.getId(), prenda);
@@ -87,15 +86,5 @@ public class GestorPrendas {
     public void guardarPrendas(List<Prenda> prendas, String filename) throws IOException {
         impresora.guardarPrendas(prendas, filename);
     }
-
-
-
-
-
-
-
-
-
-
 
 }

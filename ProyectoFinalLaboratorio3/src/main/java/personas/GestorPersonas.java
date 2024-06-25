@@ -99,7 +99,6 @@ public class GestorPersonas {
     public List<Persona> cargarPersonas(String filename) throws IOException {
         try {
             List<Persona> listaPersonas = impresora.cargarPersonas(filename);
-            // Limpia personas y agrega las nuevas.
             this.personas.clear();
             this.personas.addAll(listaPersonas);
             return listaPersonas;

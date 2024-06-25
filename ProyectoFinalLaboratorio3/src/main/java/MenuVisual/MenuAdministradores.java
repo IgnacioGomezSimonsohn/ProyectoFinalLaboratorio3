@@ -36,13 +36,11 @@ public class MenuAdministradores{
         }
 
 
-        // TODO AGREGAR LA FUNCION DE CARGAR DATOS DE PERSONAS Y DE PRENDAS ACA
-
         try {
             List<Prenda> listaPrendas = gestorPrendas.cargarPrendas("prendas");
             for (Prenda prenda : listaPrendas) {
                 gestorPrendas.agregarPrenda(prenda);
-                System.out.println("aks");
+
             }
         } catch (IOException e) {
             System.err.println("Error al cargar las prendas: " + e.getMessage());
@@ -170,9 +168,7 @@ public class MenuAdministradores{
             public void actionPerformed(ActionEvent e) {
                 List<Persona> adminList = gestorAdministradores.listarAdministradores();
                 StringBuilder adminInfo = new StringBuilder();
-                if (adminList.isEmpty()){
-                    System.out.println("no carga");
-                }
+
                 for (Persona admin : adminList) {
                     adminInfo.append(admin.toString()).append("\n");
                 }
@@ -180,7 +176,7 @@ public class MenuAdministradores{
             }
         });
 
-        // Botón de Agregar Prenda
+
         addProductButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -271,7 +267,7 @@ public class MenuAdministradores{
             }
         });
 
-        // Botón de Eliminar Prenda
+
         deleteProductButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -362,10 +358,10 @@ public class MenuAdministradores{
                                             double nuevoPrecio = Double.parseDouble(nuevoPrecioStr);
                                             int nuevoStock = Integer.parseInt(nuevoStockStr);
                                             if (nuevoPrecio > 0 && nuevoStock > 0) {
-                                                // Actualizar directamente los valores en la prenda
+
                                                 prenda.setPrecio(nuevoPrecio);
                                                 prenda.setStock(nuevoStock);
-                                                // Actualizar la etiqueta de producto en el UI
+
                                                 productLabel.setText(prenda.toString());
                                                 gestorPrendas.enviarMailReservar();
                                                 JOptionPane.showMessageDialog(panel, "Producto " + prenda.toString() + " actualizado con éxito.");
@@ -421,6 +417,8 @@ public class MenuAdministradores{
     public void mostrar() {
         frame.setVisible(true);
     }
+
+
 // TODO> DEPUES BORRAR ESTA FUNCION DE ABAJO
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -430,6 +428,7 @@ public class MenuAdministradores{
             }
         });
     }
+
 }
 
 

@@ -36,7 +36,6 @@ public class EnviadorDeCorreo1 {
             mensaje.setSubject(asunto);
             mensaje.setText(texto);
 
-            // Enviar el mensaje
             Transport.send(mensaje);
 
             System.out.println("Correo enviado exitosamente");

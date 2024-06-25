@@ -63,12 +63,24 @@ public class Impresora {
     }
 
     public List<Persona> cargarPersonas(String filename) throws IOException {
+        String fullPath = getFullPath(filename);
+        File file = new File(fullPath);
+
+        if (!file.exists() || file.length() == 0) {
+            logger.log(Level.WARNING, "El archivo no existe o está vacío: " + fullPath);
+            return new ArrayList<>();
+        }
+
         try {
             Gson gson = gson();
-            String fullPath = getFullPath(filename);
             logger.log(Level.INFO, "Cargando desde archivo: " + fullPath);
 
             String json = Files.readString(Paths.get(fullPath));
+            if (json.isEmpty()) {
+                logger.log(Level.WARNING, "El archivo está vacío: " + fullPath);
+                return new ArrayList<>();
+            }
+
             JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
 
             List<Persona> clientes = gson.fromJson(jsonObject.get("Cliente"), new TypeToken<List<Cliente>>() {}.getType());
@@ -82,7 +94,6 @@ public class Impresora {
                 personas.addAll(clientes);
             }
 
-            System.out.println(personas);
             return personas;
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error al leer el archivo " + filename, e);
@@ -107,7 +118,6 @@ public class Impresora {
         jsonObject.add("Pantalon", gson.toJsonTree(prendas.stream().filter(p -> p instanceof Pantalon).collect(Collectors.toList())));
         jsonObject.add("Media", gson.toJsonTree(prendas.stream().filter(p -> p instanceof Media).collect(Collectors.toList())));
 
-
         try (FileWriter writer = new FileWriter(fullPath)) {
             gson.toJson(jsonObject, writer);
             return fullPath;
@@ -118,19 +128,30 @@ public class Impresora {
     }
 
     public List<Prenda> cargarPrendas(String filename) throws IOException {
+        String fullPath = getFullPath(filename);
+        File file = new File(fullPath);
+
+        if (!file.exists() || file.length() == 0) {
+            logger.log(Level.WARNING, "El archivo no existe o está vacío: " + fullPath);
+            return new ArrayList<>();
+        }
+
         try {
             Gson gson = gson();
-            String fullPath = getFullPath(filename);
             logger.log(Level.INFO, "Cargando desde archivo: " + fullPath);
 
             String json = Files.readString(Paths.get(fullPath));
+            if (json.isEmpty()) {
+                logger.log(Level.WARNING, "El archivo está vacío: " + fullPath);
+                return new ArrayList<>();
+            }
+
             JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
 
             List<Prenda> buzos = gson.fromJson(jsonObject.get("Buzo"), new TypeToken<List<Buzo>>() {}.getType());
             List<Prenda> remera = gson.fromJson(jsonObject.get("Remera"), new TypeToken<List<Remera>>() {}.getType());
             List<Prenda> pantalon = gson.fromJson(jsonObject.get("Pantalon"), new TypeToken<List<Pantalon>>() {}.getType());
             List<Prenda> media = gson.fromJson(jsonObject.get("Media"), new TypeToken<List<Media>>() {}.getType());
-
 
             List<Prenda> prendas = new ArrayList<>();
             if (buzos != null) {
@@ -146,17 +167,10 @@ public class Impresora {
                 prendas.addAll(media);
             }
 
-
-            System.out.println(prendas);
             return prendas;
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Error al leer el archivo " + filename, e);
             throw new IOException("Error al leer el archivo " + filename, e);
         }
     }
-
-
-
-
-
 }
