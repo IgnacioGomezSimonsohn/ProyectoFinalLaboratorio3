@@ -401,7 +401,7 @@ public class MenuAdministradores{
                     JOptionPane.showMessageDialog(frame, "Error al guardar los datos de prendas.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 try {
-                    gestorAdministradores.guardarPersonas(gestorAdministradores.listarAdministradores(), "personas");
+                    gestorAdministradores.guardarPersonas(gestorAdministradores.listarPersonas(), "personas");
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(frame, "Error al guardar los datos de personas.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
