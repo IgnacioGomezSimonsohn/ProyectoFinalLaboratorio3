@@ -2,7 +2,7 @@ package personas;
 import com.google.gson.annotations.Expose;
 
 import java.util.Objects;
-public  class Persona {
+public abstract class Persona {
     @Expose
     private String nombre;
     @Expose

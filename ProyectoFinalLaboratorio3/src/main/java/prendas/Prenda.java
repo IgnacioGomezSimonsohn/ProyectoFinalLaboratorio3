@@ -7,7 +7,7 @@ import prendas.enumsPrendas.Talle;
 
 import java.util.Objects;
 
-public class Prenda {
+public abstract class Prenda {
     @Expose
     private String id;
     @Expose
